@@ -1,0 +1,37 @@
+spring:
+  cloud:
+    discovery:
+      enabled: true
+    config:
+      enabled: false
+  application:
+    name: keycloak-auth-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.keycloak.serverUrl}/realms/${app.keycloak.realm}
+server:
+  port: 6701
+  servlet:
+    context-path: /auth
+app:
+  keycloak:
+    admin:
+      clientId: admin-cli
+      clientSecret: Q31Dfp43sPxmpv6SqZNzUHdgDTM9Eabt
+    realm: veggo
+    serverUrl: http://localhost:9082
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
